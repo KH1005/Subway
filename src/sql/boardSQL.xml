@@ -92,16 +92,10 @@ sql-map-2.dtd'>
 		select max(no) as no from BOARD
 	</select>
 
-	<select id="selectPassword" resultMap="boardRes" parameterClass="board">
-		<include refid="select-all" />
-		<include refid="where-no" />
-		and password = #password#
-	</select>
-
-	<select id="selectPassword2" resultMap="commentRes">
+   <select id="selectPassword" resultMap="commentRes">
 		<include refid="select-com" />
 		<include refid="where-no" />
-		and password=#password#
+		and comment_password=#comment_password#
 	</select>
 
 	<!-- insert 쿼리문 정의 -->
@@ -109,7 +103,7 @@ sql-map-2.dtd'>
 	<insert id="insertBoard" parameterClass="board">
 		insert into
 		board(board_num,board_subject,board_admin,board_content,board_regdate)
-		values(board_no_seq.nextval,#subject#,#admin#,#content#,#regdate#)
+		values(board_no_seq.nextval,#board_subject#,#board_admin#,#board_content#,#board_regdate#)
 	</insert>
 
 	<!-- 댓글 작성 -->

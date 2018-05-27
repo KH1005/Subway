@@ -59,10 +59,10 @@ sql-map-2.dtd'>
 		select max(no) as no from QnA
 	</select>
 
-	<select id="selectPassword" resultMap="boardRes" parameterClass="board">
+	<select id="selectPassword" resultMap="boardRes" parameterClass="QnA">
 		<include refid="select-all" />
 		<include refid="where-no" />
-		and password = #password#
+		and QnA_password = #QnA_password#
 	</select>
 
 
@@ -83,7 +83,7 @@ sql-map-2.dtd'>
 
 	<!-- delete 쿼리문 정의 -->
 	<!-- 글 삭제 -->
-	<delete id="deleteQnA" parameterClass="board">
+	<delete id="deleteQnA" parameterClass="QnA">
 		delete from QnA
 		<include refid="where-no" />
 	</delete>
