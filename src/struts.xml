@@ -17,7 +17,7 @@
 			<result>/member/login/login_form.jsp</result>
 		</action>
 
-        <action name="JoinForm" class="member.JoinForm">
+        <action name="JoinForm" class="member.JoinForm" method="form">
         <result>/member/login/join_form.jsp</result>
         </action>
 

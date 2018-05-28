@@ -7,7 +7,7 @@
 <title>로그인</title>
 
 </head>
-<body>
+<body>   <!-- aa -->
 <form action="loginForm.action" >
 <input type="hidden" name="check" value="<s:property value='check'/>">
 ID : <input type="text" name="id"><br>

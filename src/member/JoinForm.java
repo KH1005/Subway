@@ -8,22 +8,45 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import memberVO.MemberVO;
+
 
 
 public class JoinForm extends ActionSupport {
+	public static Reader reader; 
+	public static SqlMapClient sqlMapper; 
 
+	private MemberVO paramClass; 
+	private MemberVO resultClass; 
+	private 
 
-	
-	public String execute() throws Exception{
+	public String form() throws Exception{
 		return SUCCESS;
+		
 	}
 	
 	
-	
+	public String execute() throws Exception{
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return SUCCESS;
+	}
 	
 }
 
-	
-	
-	
 	
