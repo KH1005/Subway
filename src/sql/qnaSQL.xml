@@ -26,7 +26,7 @@ sql-map-2.dtd'>
 
 	<!-- 공통으로 사용할 where-no절 정의 -->
 	<sql id="where-no">
-		where no = #no#
+		where QnA_num = #QnA_num#
 	</sql>
 
 
@@ -34,7 +34,7 @@ sql-map-2.dtd'>
 	<!-- 답변글 로직!! -->
 	<select id="selectAll" resultMap="boardRes" parameterClass="int">
 		<include refid="select-all" />
-		order by ref desc,re_step asc
+		order by QnA_ref desc,QnA_re_step asc
 	</select>
 
     <!-- 검색로직 추가 시작 -->
@@ -59,10 +59,10 @@ sql-map-2.dtd'>
 		select max(no) as no from QnA
 	</select>
 
-	<select id="selectPassword" resultMap="boardRes" parameterClass="board">
+	<select id="selectPassword" resultMap="boardRes" parameterClass="QnA">
 		<include refid="select-all" />
 		<include refid="where-no" />
-		and password = #password#
+		and QnA_password = #QnA_password#
 	</select>
 
 
@@ -76,14 +76,14 @@ sql-map-2.dtd'>
 
 	<!-- update 쿼리문 정의 -->
 	<update id="updateQnA" parameterClass="QnA">
-		update board set QnA_name=#QnA_name#,
+		update QnA set QnA_name=#QnA_name#,
 		                 QnA_content=#QnA_content#
 		<include refid="where-no" />
 	</update>
 
 	<!-- delete 쿼리문 정의 -->
 	<!-- 글 삭제 -->
-	<delete id="deleteQnA" parameterClass="board">
+	<delete id="deleteQnA" parameterClass="QnA">
 		delete from QnA
 		<include refid="where-no" />
 	</delete>
