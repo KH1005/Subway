@@ -1,65 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
-       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+   
+  <tiles-definitions>
+   <definition name="main" template="/template/layout.jsp">
+   	<put-attribute name="title" value="SUBWAY"/> 
+    <put-attribute name="header" value="/template/header.jsp" />
+    
+    <put-attribute name="menu" value="/template/menu.jsp"/>
+    <put-attribute name="footer" value="/template/footer.jsp" />
+   </definition>
+   
+   <!--메인 페이지 -->
+   <definition name="member_main" extends="main">
+   	<put-attribute name="body" value="/main/main.jsp"/>
+   </definition>
+   
+   <!-- 로그인화면 -->
+   <definition name="login" extends="main">
+   	<put-attribute name="body" value="/member/login/login_form.jsp"/>
+   </definition>
+   
+   <!-- 회원가입화면 -->
+   <definition name="join" extends="main">
+   	<put-attribute name="body" value="/member/login/join_form.jsp"  />
+   </definition>
+   
+   <!-- 아이디찾기 화면-->
+   <definition name="find_id" extends="main">
+   	<put-attribute name="body" value="/member/login/find_id.jsp"/>
+   </definition>
+   <definition name="find_id_ok" extends="main">
+   	<put-attribute name="body" value="/member/login/find_id_complete.jsp"/>
+   </definition>
+   
+   <!-- 비밀번호찾기 화면 -->
+   <definition name="find_pass" extends="main">
+   	<put-attribute name="body" value="/member/login/find_pass.jsp"/>
+   </definition>
+   <definition name="find_pass_ok" extends="main">
+   	<put-attribute name="body" value="/member/login/find_pass_complete.jsp"/>
+   </definition>
+   
+   <!--마이페이지 화면  -->
+   <definition name="mypage" extends="main">
+   	<put-attribute name="body" value="/member/mypage/mypage_view.jsp"/>
+   </definition>
+   
+   <!-- 내정보 수정폼 화면 -->
+   <definition name="mypage_modify_form" extends="main">
+   	<put-attribute name="body" value="/member/mypage/mypage_modifyform.jsp" />
+   </definition>
+   
+   <!-- 내정보 주문내역 화면-->
+   <definition name="mypage_order_list" extends="main">
+   	<put-attribute name="body" value="/member/mypage/mypage_orderlist.jsp"/>
+   </definition>
+   
+   <!-- 메뉴보기 화면 -->
+   <definition name="goods_list" extends="main">
+   	<put-attribute name="body" value="/member/goods/goods_list.jsp"/>
+   </definition>
+   
+   <!-- 메뉴 상세보기 화면 -->
+   <definition name="goods_view" extends="main">
+   	<put-attribute name="body" value="/member/goods/goods_view.jsp"/>
+   </definition>
+   
+   <!-- 메뉴 장바구니 추가 확인 화면 -->
+   <definition name="goods_add_basket" extends="main">
+   	<put-attribute name="body" value="/member/goods/goods_checklist.jsp"/>
+   </definition>
+   
+    <!-- 내정보 장바구니 리스트 화면 -->
+   <definition name="mypage_basket" extends="main">
+   	<put-attribute name="body" value="/member/order/mybasket_list.jsp"/>
+   </definition>
+   
+   <!-- 주문확인 화면 -->
+   <definition name="goods_order" extends="main">
+   	<put-attribute name="body" value="/member/order/mybasket_order.jsp"/>
+   </definition>
+   
+   <definition name="goods_pay" extends="main">
+   	<put-attribute name="body" value="/member/order/mybasket_pay.jsp"/>
+   </definition>
+   
+   <definition name="goods_pay_ok" extends="main">
+   	<put-attribute name="body" value="/member/order/mybasket_paysuccess.jsp"/>
+   </definition>
+   
+   <!-- Q&A 화면-->
+   <definition name="qna_list" extends="main">
+   	<put-attribute name="body" value="/QnA/QnA_list.jsp"/>
+   </definition>
+   
+   <definition name="qna_write" extends="main">
+   	<put-attribute name="body" value="/QnA/QnA_write.jsp"/>
+   </definition>
+   
+   <definition name="qna_view" extends="main">
+   	<put-attribute name="body" value="/QnA/QnA_view.jsp"/>
+   </definition>
+   
+   <!-- 관리자 페이지 -->
+   <definition name="admin_main" extends="main">
+   	<put-attribute name="body" value="/admin/admin_main.jsp"/>
+   </definition>
+   
+   <!-- 관리자 상품 페이지 -->
+   <definition name="admin_goods_list" extends="main">
+   	<put-attribute name="body" value="/admin/goods/admin_goods_list.jsp"/>
+   </definition>
+   
+   <definition name="admin_goods_join" extends="main">
+   	<put-attribute name="body" value="/admin/goods/admin_goods_join.jsp"/>
+   </definition>
+   
+   <definition name="admin_goods_detail" extends="main">
+   	<put-attribute name="body" value="/admin/goods/admin_goods_detail.jsp"/>
+   </definition>
+   
+   <!-- 관리자 주문 페이지 -->
+   <definition name="admin_order_list" extends="main">
+   	<put-attribute name="body" value="/admin/order/admin_order_list.jsp"/>
+   </definition>
+   
+   <definition name="admin_order_modify" extends="main">
+   	<put-attribute name="body" value="/admin/order/admin_order_modify.jsp"/>
+   </definition>
+   
+   <definition name="admin_order_detail" extends="main">
+   	<put-attribute name="body" value="/admin/order/admin_order_detail.jsp"/>
+   </definition>
+   
+	<!-- 관리자 가맹점 관리 페이지 -->
+   <definition name="admin_franchise_list" extends="main">
+   	<put-attribute name="body" value="/admin/franchise/admin_franchise_list.jsp"/>
+   </definition>
+   
+   <definition name="admin_franchise_join" extends="main">
+   	<put-attribute name="body" value="/admin/franchise/admin_franchise_join.jsp"/>
+   </definition>
+   
+   <definition name="admin_franchise_detail" extends="main">
+   	<put-attribute name="body" value="/admin/franchise/admin_franchise_detail.jsp"/>
+   </definition>
+   
+   <!-- 관리자 회원 관리 페이지 -->
+   <definition name="admin_member_list" extends="main">
+   	<put-attribute name="body" value="/admin/member/admin_member_list.jsp"/>
+   </definition>
+   
+   <definition name="admin_member_modify_form" extends="main">
+   	<put-attribute name="body" value="/admin/member/admin_member_modify_form.jsp"/>
+   </definition>
+   
+   <definition name="admin_member_detail" extends="main">
+   	<put-attribute name="body" value="/admin/member/admin_member_detail.jsp"/>
+   </definition>
+   
+   <!-- 관리자 게시판관리 페이지 -->
+   <definition name="admin_board_write" extends="main">
+   	<put-attribute name="body" value="/admin/board/board_write.jsp"/>
+   </definition>
+   
+   <definition name="admin_board_write" extends="main">
+   	<put-attribute name="body" value="/admin/board/board_write.jsp"/>
+   </definition>
+   
+   <definition name="admin_board_list" extends="main">
+   	<put-attribute name="body" value="/admin/board/board_list.jsp"/>
+   </definition>
+   
+   <definition name="admin_board_view" extends="main">
+   	<put-attribute name="body" value="/admin/board/board_view.jsp"/>
+   </definition>
+   
+   <!-- 관리자 Q&A -->
+   <definition name="admin_qna_write" extends="main">
+   	<put-attribute name="body" value="/admin/qna/qna_write.jsp"/>
+   </definition>
+   
+  </tiles-definitions>
 
-<tiles-definitions>
-<!-- 메인 화면 관련 -->
-	<definition name=".default" template="/temp/layout.jsp">
-		<put-attribute name="header" value="/temp/header.jsp" />
-	</definition>
-	
-	<definition name="main" extends=".default">
-		<put-attribute name="title" value="솔직 담백한 리뷰 공유 커뮤니티! 맛스타! " />
-		<put-attribute name="body" value="/main/main.jsp" />
-	</definition>
-	
-	
-<!-- 로그인, 회원가입 관련 -->
-	<definition name="mJoinForm" extends="main">
-		<put-attribute name="title" value="맛스타 회원 가입" />
-		<put-attribute name="body" value="/join/mJoinForm.jsp" />
-	</definition> 
-	
-	<!-- 회원  탈퇴 -->
-	<definition name="mDeleteForm" extends="main">
-		<put-attribute name="body" value="/member/mDeleteForm.jsp" />
-	</definition> 
-	
-	<!-- 비밀번호 찾기 -->
-	<definition name="pwFindForm" extends="main">
-		<put-attribute name="body" value="/login/pwFindForm.jsp" />
-	</definition> 
-	
-<!-- 리뷰 작성 관련 -->
-	<!-- 리뷰 상세 보기 -->
-	<definition name="boardView" extends = ".default">
-		<put-attribute name = "title" value = "맛스타 리뷰 상세보기" />
-		<put-attribute name = "body" value = "/board/boardView.jsp" />
-	</definition>
-	<!-- 리뷰 작성 -->
-	<definition name="boardWrite" extends = ".default">
-		<put-attribute name = "title" value = "맛스타 리뷰 작성 화면" />
-		<put-attribute name = "body" value = "/board/boardWriteForm.jsp" />
-	</definition>
-	
-<!-- 관리자 화면 관련 -->
-	<!-- 관리자 멤버 관리 -->
-	<definition name="adminMember" extends=".default">
-		<put-attribute name="title" value="관리자 맴버 관리" />
-		<put-attribute name="body" value="/admin/adminMember.jsp" />
-	</definition>
-	<!-- 관리자 리뷰 관리 -->
-	<definition name="adminReviewList" extends=".default">
-		<put-attribute name="title" value="관리자 리뷰 관리" />
-		<put-attribute name="body" value="/admin/adminReviewList.jsp" />
-	</definition>
-	
-<!-- 내 정보 관리 관련 -->
-	<definition name = "modifyMember" extends = ".default">
-		<put-attribute name = "title" value = "내 정보 관리" />
-		<put-attribute name = "body" value = "/member/mModifyForm.jsp" />
-	</definition>
-	
-	
-</tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
