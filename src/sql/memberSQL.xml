@@ -1,22 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/
+sql-map-2.dtd'>
+<sqlMap>
+
+	<!-- 생성한 자바빈을 typeAlias를 이용하여 설정 -->
+	<typeAlias alias="member" type="member.memberVO" />
 
 
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="member" class="member">
+		<result property="id" column="MEMBER_ID" />
+		<result property="password" column="MEMBER_PASSWORD" />
+		<result property="name" column="MEMBER_NAME" />
+		<result property="sex" column="MEMBER_SEX" />
+		<result property="birth" column="MEMBER_BIRTH" />
+		<result property="phone" column="MEMBER_PHONE" />
+		<result property="email" column="MEMBER_EMAIL" />
+		<result property="zipcode" column="MEMBER_ZIPCODE" />
+		<result property="address" column="MEMBER_ADDRESS" />
+		<result property="regdate" column="MEMBER_REGDATE" />
+		<result property="profile" column="MEMBER_PROFILE" />
+	</resultMap>
 
 
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="select-all">
+		select*from MEMBER
+	</sql>
 
 
+	<!-- 공통으로 사용할 where-no절 정의 -->
+	<sql id="where-id">
+		where id = #id#
+	</sql>
 
+   <sql  id="insert-all" >
+   insert into MEMBER values   
+   </sql>
+   
+   
+   
+	<!-- select 쿼리문 정의 -->
+	<select id="myPage" resultMap="member" parameterClass="string">
+	<include refid="select-all"></include>
+	<include refid="where-id"></include>
+	</select>
+	
+	
+	<select id="signUp" resultMap="member" parameterClass="string">
+		INSERT INTO MEMBER (member_id,member_password, member_name, member_sex, member_birth, member_phone
+		member_email, member_zipcode, member_address, member_regdate, member_profile) VALUES
+		 (#member_id#, #member_password#, #member_name#, #member_sex#, #member_birth#, #member_phone#, 
+		#member_email#, #member_zipcode#, #member_address#, #member_regdate#, #member_profile#)
 
+	</select>
 
+	<select id="signIn" resultMap="member"
+		parameterClass="string">
+		SELECT member_id, member_password from MEMBER where member_id=#member_id#, member_password=#member_password#
+		
+	</select>
 
+	<select id="searchId" resultMap="member" parameterClass="string">
+		select member_id from member where member_phone=#member_phone
+	</select>
+	
+		<select id="searchPassword" resultMap="member" parameterClass="string">
+		select member_password from member where member_phone=#member_phone
+	</select>
 
+<select id="Update" resultMap="member" parameterClass="string">
+		UPDATE MEMBER SET member_id=#member_password#, member_phone=#member_phone#, member_email=#member_email#, member_zipcode=#member_zipcode#, member_address=#member_address#, member_profile=#member_profile#
+		 where member_password=#member_password#
 
+	</select>
 
+<select id="delete" resultMap="member" parameterClass="string">
+DROP table member where member_password=#member_password#
+</select>
 
+<select id="idCheck" resultMap="member" parameterClass="string">
+select member_id from MEMBER
 
-
-
+</select>
 
 
 
