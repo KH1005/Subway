@@ -1,89 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/
-sql-map-2.dtd'>
-<sqlMap>
-
-   <!-- 생성한 자바빈을 typeAlias를 이용하여 설정 -->
-	<typeAlias alias="QnA" type="board.boardVO" /> 
-
-	<!-- 리절트 맵 정의 -->
-	<resultMap id="boardRes" class="QnA">
-		<result property="num" column="QnA_NUM" />
-		<result property="name" column="QnA_NAME" />
-		<result property="password" column="QnA_PASSWORD" />
-		<result property="content" column="QnA_CONTENT" />
-		<result property="date" column="QnA_DATE" />
-		<result property="ref" column="QnA_REF" />
-		<result property="re_step" column="QnA_RE_STEP" />
-		<result property="re_level" column="QnA_RE_LEVEL" />
-	</resultMap>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 
 
-	<!-- 공통으로 사용할 select 절 정의 -->
-	<sql id="select-all">
-		select*from QnA
-	</sql>
-
-	<!-- 공통으로 사용할 where-no절 정의 -->
-	<sql id="where-no">
-		where no = #no#
-	</sql>
 
 
-	<!-- select 쿼리문 정의 -->
-	<!-- 답변글 로직!! -->
-	<select id="selectAll" resultMap="boardRes" parameterClass="int">
-		<include refid="select-all" />
-		order by ref desc,re_step asc
-	</select>
-
-    <!-- 검색로직 추가 시작 -->
-	<!-- 작성자명으로 검색 -->
-	<select id="selectSearchW" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 where QnA_name like #searchKeyword#
-		 ORDER BY no DESC
-	</select>
-	
-		
-	<!-- 내용으로 검색 -->
-	<select id="selectSearchC" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 WHERE QnA_content like #searchKeyword#
-		 ORDER BY no DESC
-	</select>
-	
-	<!-- 검색 로직 끝 -->
-
-	<select id="selectLastNo" resultClass="board" parameterClass="int">
-		select max(no) as no from QnA
-	</select>
-
-	<select id="selectPassword" resultMap="boardRes" parameterClass="QnA">
-		<include refid="select-all" />
-		<include refid="where-no" />
-		and QnA_password = #QnA_password#
-	</select>
 
 
-	<!-- insert 쿼리문 정의 -->
-	<!-- 게시판에 글 작성 -->
-	<insert id="insertQnA" parameterClass="QnA">
-		insert into
-		QnA(QnA_num,QnA_name,QnA_password,QnA_content,QnA_date,QnA_re_step,QnA_re_level,QnA_ref)
-		values(QnA_no_seq.nextval,#QnA_name#,#QnA_password#,#QnA_content#,#QnA_date#,#QnA_re_step#,#QnA_re_level#,QnA_no_seq.currval)
-	</insert>
 
-	<!-- update 쿼리문 정의 -->
-	<update id="updateQnA" parameterClass="QnA">
-		update board set QnA_name=#QnA_name#,
-		                 QnA_content=#QnA_content#
-		<include refid="where-no" />
-	</update>
 
-	<!-- delete 쿼리문 정의 -->
-	<!-- 글 삭제 -->
-	<delete id="deleteQnA" parameterClass="QnA">
-		delete from QnA
-		<include refid="where-no" />
-	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

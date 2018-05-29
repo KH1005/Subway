@@ -1,149 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/
-sql-map-2.dtd'>
-<sqlMap>
-
-   <!-- 생성한 자바빈을 typeAlias를 이용하여 설정 -->
-	<typeAlias alias="board" type="board.boardVO" /> 
-	<typeAlias alias="comment" type="board.cboardVO" />
-
-	<!-- 리절트 맵 정의 -->
-	<resultMap id="boardRes" class="board">
-		<result property="num" column="BOARD_NUM" />
-		<result property="subject" column="BOARD_SUBJECT" />
-		<result property="content" column="BOARD_CONTENT" />
-		<result property="readhit" column="BOARD_READHIT" />
-		<result property="regdate" column="BOARD_REGDATE" />
-		<result property="admin" column="BOARD_ADMIN" />
-		<result property="commentno" column="BOARD_COMMENTNO" />
-		<result property="file_orgname" column="BOARD_ORGNAME" />
-		<result property="file_savname" column="BOARD_SAVNAME" />
-	</resultMap>
-
-	<resultMap id="commentRes" class="comment">
-		<result property="num" column="COMMENT_NUMBER" />
-		<result property="password" column="COMMENT_PASSWORD" />
-		<result property="content" column="COMMENT_CONTENT" />
-		<result property="name" column="COMMENT_NAME" />
-		<result property="date" column="COMMENT_DATE" />
-		<result property="ref" column="COMMENT_REF" />
-		<result property="re_level" column="COMMENT_RE_LEVEL" />
-		<result property="re_step" column="COMMENT_RE_STEP" />
-	</resultMap>
-
-	<!-- 공통으로 사용할 select 절 정의 -->
-	<sql id="select-all">
-		select*from BOARD
-	</sql>
-
-	<sql id="select-com">
-		select*from COMMENT
-	</sql>
-
-	<!-- 공통으로 사용할 where-no절 정의 -->
-	<sql id="where-no">
-		where no = #no#
-	</sql>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 
 
-	<!-- select 쿼리문 정의 -->
-	<select id="selectOne" resultMap="boardRes" parameterClass="int">
-		<include refid="select-all" />
-		<include refid="where-no" />
-	</select>
-
-	<select id="commentSelectAll" resultMap="commentRes" parameterClass="int">
-		select*from COMMENT
-		where orgnum=#orgnum#
-		order by no desc
-	</select>
-
-	<select id="selectOne" resultMap="boardRes" parameterClass="int">
-		<include refid="select-all" />
-		<include refid="where-no" />
-	</select>
 
 
-	<!-- 검색로직 추가 -->
-	<!-- 작성자명으로 검색 -->
-	<select id="selectSearchW" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 where board_name like #searchKeyword#
-		 ORDER BY no DESC
-	</select>
-	
-	<!-- 제목으로 검색 -->
-	<select id="selectSearchS" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		where board_subject like #searchKeyword#
-		order by no desc
-		</select>
-		
-	<!-- 내용으로 검색 -->
-	<select id="selectSearchC" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 WHERE board_content like #searchKeyword#
-		 ORDER BY no DESC
-		
-	</select>
-	<!-- 검색 로직 끝 -->
 
-	<select id="selectLastNo" resultMap="board" parameterClass="int">
-		select max(no) as no from BOARD
-	</select>
 
-   <select id="selectPassword" resultMap="commentRes">
-		<include refid="select-com" />
-		<include refid="where-no" />
-		and comment_password=#comment_password#
-	</select>
 
-	<!-- insert 쿼리문 정의 -->
-	<!-- 게시판에 글 작성 -->
-	<insert id="insertBoard" parameterClass="board">
-		insert into
-		board(board_num,board_subject,board_admin,board_content,board_regdate)
-		values(board_no_seq.nextval,#board_subject#,#board_admin#,#board_content#,#board_regdate#)
-	</insert>
 
-	<!-- 댓글 작성 -->
-	<insert id="insertComment" parameterClass="comment">
-		insert into
-		board(comment_num,board_orgnum,comment_name,comment_password,comment_content,comment_date,
-		      comment_ref,comment_re_step,comment_re_level)
-		values(board_no_seq.nextval, #comment_orgnum#, #comment_name#,
-		#comment_password#, #comment_content#, #comment_regdate#,
-		#comment_ref#, #comment_re_level#, #comment_re_step#)
-	</insert>
 
-	<!-- update 쿼리문 정의 -->
-	<update id="updateBoard" parameterClass="board">
-		update board set board_subject=#board_subject#,
-		board_admin=#board_admin#,
-		board_content=#board_content#
-		<include refid="where-no" />
-	</update>
 
-	<update id="updateFile" parameterClass="board">
-		update board set board_orgname=#board_orgname#
-		,board_savname=#board_savname#
-		<include refid="where-no" />
-	</update>
 
-	<update id="updateReadHit" parameterClass="board">
-		update board set board_readhit=board_readHit + 1
-		<include refid="where-no" />
-	</update>
 
-	<!-- delete 쿼리문 정의 -->
-	<!-- 글 삭제 -->
-	<delete id="deleteBoard" parameterClass="board">
-		delete from board
-		<include refid="where-no" />
-	</delete>
-  <!-- 댓글 삭제 -->
-	<delete id="deleteComment" parameterClass="comment">
-		delete from comment
-		<include refid="where-no" />
-	</delete>
-</sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
