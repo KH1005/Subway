@@ -178,7 +178,7 @@
     <tr>
       <td width="250" ><b>개인정보 입력</b></td>
       <td width="400" > </td>
-    </tr> 
+    </tr> kl
     <tr>
       <td width="250">사용자 이름</td>
       <td width="400">

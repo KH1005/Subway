@@ -3,7 +3,7 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
-<<<<<<< HEAD
+ 
 
 <struts>
 
@@ -23,26 +23,15 @@
         </action>
 
 	</package>
-=======
->>>>>>> parent of ea69b65... 2시10분경 대망의 성공
 
-<struts>
+
+
    <package name="Subway" extends="struts-default, tiles-default" >
    		
    </package>
   </struts>  
 
 
-<<<<<<< HEAD
-</struts>
-	
-	
-=======
->>>>>>> parent of ea69b65... 2시10분경 대망의 성공
-	
-	
-	
-	
 	
 	
 	

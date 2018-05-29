@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
-
-<<<<<<< HEAD
-	<!-- 생성한 자바빈을 typeAlias를 이용하여 설정 -->
+<sqlMap>
+<!-- 생성한 자바빈을 typeAlias를 이용하여 설정 -->
 	<typeAlias alias="member" type="member.memberVO" />
 
 
 	<!-- 리절트 맵 정의 -->
-	<resultMap id="member" class="member">
-		<result property="id" column="MEMBER_ID" />
-		<result property="password" column="MEMBER_PASSWORD" />
-		<result property="name" column="MEMBER_NAME" />
-		<result property="sex" column="MEMBER_SEX" />
-		<result property="birth" column="MEMBER_BIRTH" />
-		<result property="phone" column="MEMBER_PHONE" />
-		<result property="email" column="MEMBER_EMAIL" />
-		<result property="zipcode" column="MEMBER_ZIPCODE" />
-		<result property="address" column="MEMBER_ADDRESS" />
-		<result property="regdate" column="MEMBER_REGDATE" />
-		<result property="profile" column="MEMBER_PROFILE" />
+	
+ <resultMap id="member" class="member">
+		<result property="member_id" column="MEMBER_ID" />
+		<result property="member_password" column="MEMBER_PASSWORD" />
+		<result property="member_name" column="MEMBER_NAME" />
+		<result property="member_sex" column="MEMBER_SEX" />
+		<result property="member_birth" column="MEMBER_BIRTH" />
+		<result property="member_phone" column="MEMBER_PHONE" />
+		<result property="member_email" column="MEMBER_EMAIL" />
+		<result property="member_zipcode" column="MEMBER_ZIPCODE" />
+		<result property="member_address" column="MEMBER_ADDRESS" />
+		<result property="member_regdate" column="MEMBER_REGDATE" />
+		<result property="member_profile" column="MEMBER_PROFILE" />
 	</resultMap>
-
 
 	<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="select-all">
@@ -34,7 +33,7 @@
 	</sql>
 
    <sql  id="insert-all" >
-   insert into MEMBER values   
+   insert into MEMBER values    
    </sql>
    
    
@@ -61,39 +60,28 @@
 	</select>
 
 	<select id="searchId" resultMap="member" parameterClass="string">
-		select member_id from member where member_phone=#member_phone
+		select member_id from member where member_phone=#member_phone, member_name=#member_name#
 	</select>
 	
 		<select id="searchPassword" resultMap="member" parameterClass="string">
-		select member_password from member where member_phone=#member_phone
+		select member_password from member where member_phone=#member_phone, member_name=#member_name#
 	</select>
-=======
-<sqlMap>	
-	
 
->>>>>>> parent of ea69b65... 2시10분경 대망의 성공
+
+	<select id="idcheck" resultMap="member" parameterClass="string">
+	 select * from member where id = #id#
+	</select>
+
 
 <select id="Update" resultMap="member" parameterClass="string">
 		UPDATE MEMBER SET member_id=#member_password#, member_phone=#member_phone#, member_email=#member_email#, member_zipcode=#member_zipcode#, member_address=#member_address#, member_profile=#member_profile#
 		 where member_password=#member_password#
 
-<<<<<<< HEAD
+
 	</select>
-=======
+
 </sqlMap>
 
-
-
->>>>>>> parent of ea69b65... 2시10분경 대망의 성공
-
-<select id="delete" resultMap="member" parameterClass="string">
-DROP table member where member_password=#member_password#
-</select>
-
-<select id="idCheck" resultMap="member" parameterClass="string">
-select member_id from MEMBER
-
-</select>
 
 
 
