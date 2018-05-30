@@ -26,7 +26,7 @@
 		<td width="350"><strong>제목</strong></td>
         		<td width="70"><strong>글쓴이</strong></td>
         		<td width="80"><strong>날짜</strong></td>
-		<td width="50"><strong>조회수</strong></td>
+		<td width="80"><strong>조회수</strong></td>
       	      </tr>
       	      <tr bgcolor="#777777">
         		<td height="1" colspan="5"></td>
@@ -34,9 +34,9 @@
 
 	      <s:iterator value="list" status="stat">
 
-		<s:url id="viewURL" action="viewAction" >
-			<s:param name="no">
-				<s:property value="no" />
+		<s:url id="viewURL" action="BoardViewAction" >
+			<s:param name="board_num">
+				<s:property value="board_num" />
 			</s:param>
 			<s:param name="currentPage">
 				<s:property value="currentPage" />
@@ -44,11 +44,11 @@
 		</s:url>
 			
      	      <tr bgcolor="#FFFFFF"  align="center">
-        		<td><s:property value="no" /></td>
+        		<td><s:property value="board_num" /></td>
         		<td align="left"> &nbsp;<s:a href="%{viewURL}"><s:property value="board_subject" /></s:a></td>
-        		<td align="center"><s:property value="name" /></td>
+        		<td align="center"><s:property value="board_admin" /></td>
 		<td align="center"><s:property value="board_regdate" /></td>
-        		<td><s:property value="readhit" /></td>
+        		<td><s:property value="board_readhit" /></td>
       	      </tr>
       	      <tr bgcolor="#777777">
         		<td height="1" colspan="5"></td>
@@ -70,11 +70,20 @@
 	      <tr align="center">
     		<td colspan="5"><s:property value="pagingHtml"  escape="false" /></td>
     	      </tr>
-    	
-    	      <tr align="right">
-    		<td colspan="5">
-    		<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='writeForm.action?currentPage=<s:property value="currentPage" />';">
-		</td>
+    	       
+    	       
+    	       <tr align="center">
+    	       <td colspan="5">
+    	       <form>
+    	       <select name="searchNum">
+    	       <option value="0">작성자</option>
+    	       <option value="1">제목</option>
+    	       <option value="2">내용</option>
+    	       </select>
+    	       <s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
+    	       <input name="submit" type="submit" value="검색" class="inputb">
+    	       </form>
+    	       </td>
     	       </tr>
 	</table>
    </body>

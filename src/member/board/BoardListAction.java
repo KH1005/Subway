@@ -1,4 +1,4 @@
-package admin;
+package member.board;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;

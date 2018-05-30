@@ -1,4 +1,4 @@
-package admin;
+package admin.board;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
@@ -18,8 +18,8 @@ public class AdminWriteAction extends ActionSupport{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
-	private boardVO paramClass;
-	private boardVO resultClass;
+	private AdminboardVO paramClass;
+	private AdminboardVO resultClass;
 
 	
 	private int currentPage;
@@ -49,8 +49,8 @@ public class AdminWriteAction extends ActionSupport{
 	
 	public String execute() throws Exception {
 		
-		paramClass = new boardVO();
-		resultClass = new boardVO();
+		paramClass = new AdminboardVO();
+		resultClass = new AdminboardVO();
 		
 		paramClass.setBoard_subject(getBoard_subject());
 		paramClass.setBoard_admin(getBoard_admin());
@@ -62,19 +62,19 @@ public class AdminWriteAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-	public boardVO getParamClass() {
+	public AdminboardVO getParamClass() {
 		return paramClass;
 	}
 
-	public void setParamClass(boardVO paramClass) {
+	public void setParamClass(AdminboardVO paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public boardVO getResultClass() {
+	public AdminboardVO getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(boardVO resultClass) {
+	public void setResultClass(AdminboardVO resultClass) {
 		this.resultClass = resultClass;
 	}
 
