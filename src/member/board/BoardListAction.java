@@ -1,5 +1,6 @@
-package admin;
+package member.board;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,7 +14,7 @@ import java.net.*;
 
 public class BoardListAction extends ActionSupport{
 	
-	public static Reader reader;
+    public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
 	private List<boardVO> list = new ArrayList<boardVO>();
@@ -40,6 +41,7 @@ public class BoardListAction extends ActionSupport{
 		if(getSearchKeyword()!=null) {
 			return search();
 		}
+		
 		
 		list=sqlMapper.queryForList("selectAll");
 		

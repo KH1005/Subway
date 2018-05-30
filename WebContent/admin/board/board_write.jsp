@@ -44,16 +44,21 @@
   			<td align="center"><h2>뉴스/공지사항</h2></td>
   		</tr>
   	</table>
-  
-		<s:if test="resultClass == NULL">
+  	
+  <s:if test="resultClass == NULL">
 			<form action="AdminWriteAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
 		</s:if>
 		
 		<s:else>
-		  <form action="ModifyAction.action" method="post" enctype="multipart/form-data">
-		  <s:hidden name="no" value="%{resultClass.board_num}" />
+		  <form action="AdminModifyAction.action" method="post" enctype="multipart/form-data">
+		  <s:hidden name="board_num" value="%{resultClass.board_num}" />
 		  <s:hidden name="currentPage" value="%{currentPage}" />
+		  <s:hidden name="old_file" value="%{resultClass.board_savname}" />
 		</s:else>
+  
+	
+
+	
 
        <table width="600" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -67,7 +72,7 @@
         <tr>
           <td width="100" bgcolor="#F4F4F4"><font color="#FF0000">*</font>  제목</td>
           <td width="500" bgcolor="#FFFFFF">
-            <s:textfield name="subject" theme="simple" value="%{resultClass.board_subject}" cssStyle="width:370px" maxlength="50"/>
+            <s:textfield name="board_subject" theme="simple" value="%{resultClass.board_subject}" cssStyle="width:370px" maxlength="50"/>
           </td>
         </tr>
         							
@@ -78,7 +83,7 @@
         <tr>
           <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  이름 </td>
           <td bgcolor="#FFFFFF">
-            <s:textfield name="name" theme="simple" value="%{resultClass.board_admin}" cssStyle="width:100px" maxlength="20"/>
+            <s:textfield name="board_admin" theme="simple" value="%{resultClass.board_admin}" cssStyle="width:100px" maxlength="20"/>
           </td>
         </tr>
         <tr bgcolor="#777777">
@@ -88,28 +93,37 @@
 	<tr>
           <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  내용 </td>
           <td bgcolor="#FFFFFF">
-            <s:textarea name="content" theme="simple" value="%{resultClass.board_content}" cols="50" rows="10" />
+            <s:textarea name="board_content" theme="simple" value="%{resultClass.board_content}" cols="50" rows="10" />
           </td>
         </tr>
+        
+            <tr>
+          <td bgcolor="#F4F4F4">  첨부파일 </td>
+          <td bgcolor="#FFFFFF">
+           <!--  <s:file name="upload" theme="simple"/>-->
+            <input type="file" name="upload" value id="upload">
+            <s:if test="resultClass.board_orgname != NULL">
+      &nbsp; * <s:property value="resultClass.board_orgname" />
+      </s:if>
+      
         <tr bgcolor="#777777">
           <td height="1" colspan="2"></td>
         </tr>
         
-						
+                  
           
         <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>	
+          <td height="1" colspan="2"></td>   
         </tr>
         
         <tr>
           <td height="10" colspan="2"></td>
         </tr>
         
-        
         <tr>
           <td align="right" colspan="2">
           	<input name="submit" type="submit" value="작성완료" class="inputb">
-            <input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='BoardListAction.action?currentPage=<s:property value="currentPage" />'">
+            <input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='AdminBoardListAction.action?currentPage=<s:property value="currentPage" />'">
           </td>
         </tr>
 

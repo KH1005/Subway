@@ -30,12 +30,5 @@
 	</transactionManager>
 	
 	<sqlMap resource="/sql/boardSQL.xml"/>	<!--쿼리문을 정의한 xml을 넣어준다. -->
-	<sqlMap resource="/sql/adminSQL.xml"/>
-	<sqlMap resource="/sql/storeSQL.xml"/>
-	<sqlMap resource="/sql/basketSQL.xml"/>
-	<sqlMap resource="/sql/goodsSQL.xml"/>
-	<sqlMap resource="/sql/memberSQL.xml"/>
-	<sqlMap resource="/sql/qnaSQL.xml"/>
-	<sqlMap resource="/sql/orderSQL.xml"/>
 
 </sqlMapConfig>

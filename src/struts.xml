@@ -7,56 +7,53 @@
 <struts>
 
 	<constant name="struts.multipart.maxSize" value="104857600" />	<!-- 업로드 사이즈 정의 -->
-	
-	<package name="board" extends="struts-default, tiles-default">
-	<!-- 
-		<global-results>
-			<result name="error">/board/pageError.jsp</result>
-		</global-results>
-		<global-exception-mappings>
-			<exception-mapping result="error" exception="java.lang.Exception"/>
-		</global-exception-mappings>
-	 -->
-	 <action name="BoardListAction" class="admin.BoardListAction">		<!-- listAction실행시 boadrList.jsp 포워드 -->
-	 	<result>/board/board_list.jsp</result>
-	 </action>
-	 
-	 <action name="writeForm" class="admin.AdminWriteAction" method="form">
-       <result>/admin/board/board_write.jsp</result>
-    </action>   <!-- 폼을 띄어준다. -->
-    
-    <action name="AdminWriteAction" class="admin.AdminWriteAction" >
-       <result type="redirect-action">   <!-- writeAction을 처리하고 리스트를 띄어주기위해 리시트액션으로 리다이렉트한다. -->
-          <param name="actionName">BoardListAction</param>
-       </result>
-    </action>
-	 
-	 </package>	
+
+	<package name="board" extends="struts-default">
+		<!-- <global-results> <result name="error">/board/pageError.jsp</result> 
+			</global-results> <global-exception-mappings> <exception-mapping result="error" 
+			exception="java.lang.Exception"/> </global-exception-mappings> -->
+		<action name="AdminBoardListAction" class="admin.board.AdminBoardListAction">		<!-- listAction실행시 boadrList.jsp 포워드 -->
+			<result>/admin/board/admin_board_list.jsp</result>
+		</action>
+
+		<action name="BoardListAction" class="member.board.BoardListAction">		<!-- listAction실행시 boadrList.jsp 포워드 -->
+			<result>/member/board/board_list.jsp</result>
+		</action>
+
+		<action name="writeForm" class="admin.board.AdminWriteAction"
+			method="form">
+			<result>/admin/board/board_write.jsp</result>
+		</action>   <!-- 폼을 띄어준다. -->
+
+		<action name="AdminWriteAction" class="admin.board.AdminWriteAction">
+			<result type="redirect-action">   <!-- writeAction을 처리하고 리스트를 띄어주기위해 리시트액션으로 리다이렉트한다. -->
+				<param name="actionName">AdminBoardListAction</param>
+			</result>
+		</action>
+
+		<action name="AdminBoardViewAction" class="admin.board.AdminBoardViewAction">
+			<result>/admin/board/board_view.jsp</result>
+		</action>
+		<action name="BoardViewAction" class="member.board.BoardViewAction">
+			<result>/member/board/board_view.jsp</result>
+		</action>
+
+		<!-- 게시물 수정 -->
+		<action name="ModifyForm" class="admin.board.AdminBoardViewAction">
+			<result type="chain">writeForm</result>
+		</action>
+
+		<action name="AdminModifyAction" class="admin.board.AdminModifyAction">
+			<result type="chain">AdminBoardViewAction</result>
+		</action>
+
+		<!-- 게시물 삭제 -->
+		<action name="AdminDeleteAction" class="admin.board.AdminDeleteAction">
+			<result type="chain">AdminBoardListAction</result>
+		</action>
+
+		<action name="CommentAction" class="member.board.CommentAction">
+			<result type="chain">BoardViewAction</result>
+		</action>
+	</package>
 </struts>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
