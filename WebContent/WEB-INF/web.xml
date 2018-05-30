@@ -25,7 +25,6 @@
 			<param-value>utf-8</param-value>
 	</init-param>
   </filter>
-  
   <filter-mapping>
   	<filter-name>struts2</filter-name>
   	<url-pattern>/*</url-pattern>	

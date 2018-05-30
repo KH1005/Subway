@@ -1,4 +1,4 @@
-package member.board;
+package admin;
 
 import java.util.Date;
 

@@ -1,9 +1,6 @@
-package admin.board;
+package admin;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-import admin.board.AdminboardVO;
-
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -21,8 +18,8 @@ public class AdminWriteAction extends ActionSupport{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
-	private AdminboardVO paramClass;
-	private AdminboardVO resultClass;
+	private boardVO paramClass;
+	private boardVO resultClass;
 
 	
 	private int currentPage;
@@ -34,11 +31,6 @@ public class AdminWriteAction extends ActionSupport{
 	private String board_orgname;
 	private String board_savname;
 	Calendar today = Calendar.getInstance();
-	
-	private File upload;
-	private String uploadContentType;
-	private String uploadFileName;
-	private String fileUploadPath="C:\\Java\\upload\\";
 	
 	
 	public AdminWriteAction() throws IOException
@@ -57,8 +49,8 @@ public class AdminWriteAction extends ActionSupport{
 	
 	public String execute() throws Exception {
 		
-		paramClass = new AdminboardVO();
-		resultClass = new AdminboardVO();
+		paramClass = new boardVO();
+		resultClass = new boardVO();
 		
 		paramClass.setBoard_subject(getBoard_subject());
 		paramClass.setBoard_admin(getBoard_admin());
@@ -67,59 +59,22 @@ public class AdminWriteAction extends ActionSupport{
 		
 		
 		sqlMapper.insert("insertBoard", paramClass);
-		
-	   if(getUpload() != null)
-		{
-		   	System.out.println("in");
-			resultClass = (AdminboardVO) sqlMapper.queryForObject("selectLastNo");
-			
-			String file_name = "file_" + resultClass.getBoard_num();
-			String file_ext = getUploadFileName().substring(
-					getUploadFileName().lastIndexOf('.') + 1,
-					getUploadFileName().length()
-					);
-			
-			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
-			FileUtils.copyFile(getUpload(), destFile);
-			
-			paramClass.setBoard_num(resultClass.getBoard_num());
-			paramClass.setBoard_orgname(getUploadFileName());
-			paramClass.setBoard_savname(file_name+"."+file_ext);
-			
-			sqlMapper.update("updateFile", paramClass);
-		}
 		return SUCCESS;
 	}
 
-	public static Reader getReader() {
-		return reader;
-	}
-
-	public static void setReader(Reader reader) {
-		AdminWriteAction.reader = reader;
-	}
-
-	public static SqlMapClient getSqlMapper() {
-		return sqlMapper;
-	}
-
-	public static void setSqlMapper(SqlMapClient sqlMapper) {
-		AdminWriteAction.sqlMapper = sqlMapper;
-	}
-
-	public AdminboardVO getParamClass() {
+	public boardVO getParamClass() {
 		return paramClass;
 	}
 
-	public void setParamClass(AdminboardVO paramClass) {
+	public void setParamClass(boardVO paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public AdminboardVO getResultClass() {
+	public boardVO getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(AdminboardVO resultClass) {
+	public void setResultClass(boardVO resultClass) {
 		this.resultClass = resultClass;
 	}
 
@@ -187,39 +142,6 @@ public class AdminWriteAction extends ActionSupport{
 		this.today = today;
 	}
 
-	public File getUpload() {
-		return upload;
-	}
-
-	public void setUpload(File upload) {
-		this.upload = upload;
-	}
-
-	public String getUploadContentType() {
-		return uploadContentType;
-	}
-
-	public void setUploadContentType(String uploadContentType) {
-		this.uploadContentType = uploadContentType;
-	}
-
-	public String getUploadFileName() {
-		return uploadFileName;
-	}
-
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
-	}
-
-	public String getFileUploadPath() {
-		return fileUploadPath;
-	}
-
-	public void setFileUploadPath(String fileUploadPath) {
-		this.fileUploadPath = fileUploadPath;
-	}
-
-	
 	
 	
 
